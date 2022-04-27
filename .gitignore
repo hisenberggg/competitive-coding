@@ -1,0 +1,5 @@
+#CodeBlocks .exe and .o files
+*.o
+*.exe
+.idea
+.DS_Store
