@@ -1,0 +1,3 @@
+cmds:
+* type filename : prints contents of file(windows)(for linux : cat filename)
+* FC filename : difference b/w contents of two files(windows)(for linux : diff filename)
