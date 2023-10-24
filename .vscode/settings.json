@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "regex": "cpp",
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "valarray": "cpp"
-    }
-}
