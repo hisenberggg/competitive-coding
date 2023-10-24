@@ -3,7 +3,7 @@ using namespace std;
 
 void get_powerset(vector<vector<int>>& op, vector<int> a,vector<int> se, int i, int n){
     if(i == n){
-        cout<<se.size()<<endl;
+        // cout<<se.size()<<endl;
         op.push_back(se);
         return;
     }
@@ -17,7 +17,7 @@ void get_powerset(vector<vector<int>>& op, vector<int> a,vector<int> se, int i, 
 
 int main(int argc, char const *argv[])
 {
-    vector<int> a = {1,2,3};
+    vector<int> a = {1,2,3,2,3};
     int n = a.size();
     vector<vector<int>> op; //store the output
     vector<int> se;

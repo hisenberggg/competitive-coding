@@ -54,7 +54,6 @@ int lcs_mem(string& a, string& b, int m, int n, vector<vector<int>>& dp){
 
         }
     }
-
     return dp[m][n];
 }
 
@@ -73,7 +72,6 @@ string extract_lcs(string a, string b, int m, int n, vector<vector<int>>& dp){
                 n--;
             }
         }
-
     }
     reverse(s.begin(),s.end());
     return s;

@@ -6,4 +6,3 @@ using namespace std;
 
 // x = ( ( (p'-p)/(s'-s) ) + (s'-s) )/2
 // y = (s'-s) - x
-

@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(){
-    string s = " ";
+    string s = "abcdefg";
     int maxi=1,u=0,v=0;
         set<char> a;
         cout<<s.length()<<endl;
@@ -20,6 +20,6 @@ int main(){
             }
             a.insert(s[i]);
         }
-    cout<<maxi<<endl;
+    cout<<"ans: "<<maxi<<endl;
     return 0;
 }
