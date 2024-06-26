@@ -12,12 +12,14 @@ int main()
     string status;
     for(int i=0;i<n;i++){
         
-        // if the current element is 0 and the reachablity is less then current position then it is not possible to reach the end
+        // if the current element is 0 and the reachablity is less then current position 
+        // then it is not possible to reach the end
         if(a[i] == 0 && i > reachable){
             status = "cant reach";
             break;
         }
-        // if the reacablity from current item is greater then previous reach value, then update the reachablity
+        // if the reacablity from current item is greater then previous reach value, 
+        // then update the reachablity
         if(a[i] + i > reachable){
             reachable = a[i] + i;
             if(reachable>n-1){

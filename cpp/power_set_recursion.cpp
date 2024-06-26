@@ -17,7 +17,7 @@ void get_powerset(vector<vector<int>>& op, vector<int> a,vector<int> se, int i, 
 
 int main(int argc, char const *argv[])
 {
-    vector<int> a = {1,2,3,2,3};
+    vector<int> a = {5,5,3,5};
     int n = a.size();
     vector<vector<int>> op; //store the output
     vector<int> se;
