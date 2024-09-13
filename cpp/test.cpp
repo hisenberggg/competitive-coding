@@ -1,24 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// write functions here 
+int get_max_subsequence(vector<int> &arr, int ind, int prev_ind, vector<vector<int>> &dp){
+    if(ind==arr.size()){
+        return 0;
+    }
+    if(dp[ind][prev_ind+1] != -1) 
+        return dp[ind][prev_ind+1];
 
+    int notake = 0 + get_max_subsequence(arr,ind+1,prev_ind, dp);
 
+    int take = 0;
+    if(prev_ind==-1 || arr[ind]>arr[prev_ind]){
+        take = 1 + get_max_subsequence(arr,ind+1,ind, dp);
+    }
 
-void addedge(vector<int> adj[],int source, int dest){
-    adj[source].push_back(dest);
+    return dp[ind][prev_ind+1] = max(take,notake);
 }
+
 int main() {
 	// your code goes here
-    int numnodes = 10;
-    vector<int> adj[numnodes];
+    vector<int> arr = {0,1,0,3,2,3};
+    int n = arr.size();
+    int ind = 0;
+    int prev_ind = -1;
+    vector<vector<int>> dp(n,vector<int>(n+1,-1));
 
-    addedge(adj,1,2);
-    addedge(adj,1,3);
-    addedge(adj,2,5);
-    addedge(adj,1,5);
-    addedge(adj,5,2);
-    addedge(adj,3,2);
+    cout<<"Max len of increasing sequence is: "<<get_max_subsequence(arr,ind, prev_ind, dp);
 
     return 0;
 }
