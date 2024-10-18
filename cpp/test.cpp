@@ -1,26 +1,69 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int getMaxSubseq(vector<int> &arr, int ind, int n, int prev){
-    if(ind==n){
-        return 0;
-    }
-    int notTake = 0 + getMaxSubseq(arr,ind+1,n,arr[ind]);
+int makePartition(int lowerbound, int upperbound, vector<int>& arr){
+    int pivot = arr[lowerbound];  
+    int l = lowerbound, u = upperbound;
 
-    int take = 0;
-    if(prev == -1 || arr[ind]>arr[prev]){
-        take = 1 + getMaxSubseq(arr,ind+1,n,arr[ind]);
-    }
-    return max(take,notTake);
+    while(l<u){
+        while(arr[l]<=pivot && l<u){
+            l++;
+        }
 
+        while(arr[u]>pivot){
+            u--;
+        }
+
+        if(l<u){
+            swap(arr[l],arr[u]);
+        }
+    }
+    arr[lowerbound] = arr[u];
+    arr[u] = pivot;
+
+    return u;
+}
+
+void quicksort(int lowerbound, int upperbound, vector<int>& arr){
+
+    if(lowerbound<upperbound){
+        int partition = makePartition(lowerbound,upperbound,arr);
+
+        quicksort(lowerbound,partition-1,arr);
+        quicksort(partition+1,upperbound,arr);
+    }
+}
+
+int quickSelect(int lowerbound, int upperbound,vector<int>& arr, int nth){
+    if(lowerbound<upperbound){
+        int partition = makePartition(lowerbound,upperbound,arr);
+
+        if(partition>nth){
+            return quickSelect(lowerbound,partition-1,arr,nth);
+        }
+        else if(partition<nth){
+            return quickSelect(partition+1,upperbound,arr,nth);
+        }
+        else{
+            return arr[partition];
+        }
+    }
 }
 
 int main(int argc, char const *argv[])
 {
-    vector<int> arr = {3,4,5,7,3,2,6,7,8,4};
-    int n = arr.size();
-    int prev = -1;
-    int start = 0;
-    cout<<"Max increasing subsequence: "<<getMaxSubseq(arr,start,n,prev);
+    vector<int> arr = {3,2,5,6,4,1};
+
+    // quicksort(0,arr.size()-1,arr);
+    // for(auto it:arr){
+    //     cout<<it<<" ";
+    // }
+
+    // find the nth largest
+    int nth_largest = 2;
+    int nth = arr.size() - nth_largest;
+
+    cout<<nth_largest<<"th largest element is: "<<quickSelect(0,arr.size()-1,arr,nth);
+    
     return 0;
 }
