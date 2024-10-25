@@ -26,27 +26,31 @@ void reverse(int *arr,int i,int j){
 }
 
 void next_permutation_1(int *arr, int n){
-    int i = n-1;
-    while(i>=0){
+    int ind;
+    for(int i=n-1;i>0;i--){
         if(arr[i] > arr[i-1]){
-            i--;break;
+            ind = i-1;
+            break;
         }
-        i--;
     }
 
-    if(i<0){
+    if(ind<0){
         reverse(arr,0,n-1);
     }
     else{
-        swap(arr,i,n-1);
-        reverse(arr,i+1,n-1);
+        for(int i=n-1;i>=ind;i--){
+            if(arr[i]>arr[ind]){
+                swap(arr,i,ind);
+                reverse(arr,ind+1,n-1);
+                break;
+            }
+        }
     }
-    
 }
 
 int main(int argc, char const *argv[])
 {
-    int arr[] = {1,2,5,4,3};
+    int arr[] = {2,1,5,4,3,0,0};
     int n = sizeof(arr)/sizeof(arr[0]);
 
     // next_permutation(arr,arr+5); //using in-built function of C++
