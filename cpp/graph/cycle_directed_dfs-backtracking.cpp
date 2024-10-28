@@ -14,6 +14,7 @@ bool cycle_dfs(int node, vector<int> adj[], vector<bool> visited){
     // if no adj, therefore no dependency, therefore no cycle 
     // int course schedule problem: no adj i.e. no prerequisite, therefore this course can be done 
     // therefore no cycle 
+    // this will run after we clear the neighbours in the end 
     if(!adj[node].size())
         return false;
 
