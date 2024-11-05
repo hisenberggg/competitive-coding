@@ -1,46 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void dfs(int node, stack<int>& stk, vector<int> adj[], vector<bool>& visited){
-    visited[node] = true;
-    for(auto it:adj[node]){
-        if(!visited[it])
-            dfs(it,stk,adj,visited);
-    }
-
-    stk.push(node);
+bool comparator(string a, string b){
+    if(a+b > b + a) return true;
+    return false;
 }
 
-vector<int> getTopoSort(vector<int> adj[], int n){
-    vector<bool> visited(n,false);
-    stack<int> stk;
-
-    for(int i=0;i<n;i++){
-        if(!visited[i]){
-            dfs(i,stk,adj,visited);
-        }
+string largestNumber(vector<int> nums){
+    vector<string> num_str;
+    for(auto it:nums){
+        num_str.push_back(to_string(it));
     }
+    sort(num_str.begin(),num_str.end(), comparator);
 
-    vector<int> output;
-    while(!stk.empty()){
-        output.push_back(stk.top());
-        stk.pop();
+    string output = "";
+    for(auto it:num_str){
+        output += it;
     }
-
     return output;
 }
 
 int main()
 {
-    int n = 6; 
-    // vector<int> adj[n] = {{1},{3,2},{4},{5,6},{5},{7},{},{}};
-    vector<int> adj[n] = {{},{},{3},{1},{0,1},{0,2}};
-    vector<int> topo = getTopoSort(adj,n);
-    
-    for(auto it:topo){
-        cout<<it<<" ";
-    }
+    vector<int> nums = {3,30,34,5,9};
+    string output = largestNumber(nums);
+    cout<<"Largest number formed: "<<output;
     return 0;
 }
-
-
