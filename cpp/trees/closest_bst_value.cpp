@@ -18,7 +18,6 @@ void closest_value(TreeNode* root, double target, int& mini, double mindiff){
         return;
 
     double diff = abs((float)root->val - target);
-    cout<<diff<<endl;
 
     if(diff<mindiff || (diff == mindiff && root->val < mini)){
         mindiff = diff;
