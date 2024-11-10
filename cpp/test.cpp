@@ -1,29 +1,63 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool comparator(string a, string b){
-    if(a+b > b + a) return true;
-    return false;
-}
-
-string largestNumber(vector<int> nums){
-    vector<string> num_str;
-    for(auto it:nums){
-        num_str.push_back(to_string(it));
+class TreeNode{
+    public:
+        TreeNode* left, *right;
+        int val;
+    TreeNode(int value){
+        this->val = value;
+        left = right = NULL;
     }
-    sort(num_str.begin(),num_str.end(), comparator);
+};
+// q : 
+// temp 8:0
+// lvl map 0:10,8 , -1:5, 1:15, -2:1
+vector<int> levelOrderTraversal(TreeNode* root){
+    queue<tuple<TreeNode*, int, int>> q;
+    map<int,map<int,set<int>>> level_map;
 
-    string output = "";
-    for(auto it:num_str){
-        output += it;
+    q.push({root,0,0});
+    while(!q.empty()){
+        auto it = q.front();
+        q.pop();
+
+        auto [temp, level, vlevel] = it;
+
+        level_map[level][vlevel].insert(temp->val);
+
+        if(temp->left){
+            q.push({temp->left,level-1,vlevel+1});
+        }
+        if(temp->right){
+            q.push({temp->right,level+1, vlevel+1});
+        }
+    }
+    vector<int> output;
+    for(auto it:level_map){
+        for(auto its:it.second){
+            output.insert(output.end(),its.second.begin(),its.second.end());
+            // for(auto itss:its.second){
+            //     output.push_back(itss);
+            // }
+        }
     }
     return output;
 }
 
 int main()
 {
-    vector<int> nums = {3,30,34,5,9};
-    string output = largestNumber(nums);
-    cout<<"Largest number formed: "<<output;
+    TreeNode* root = new TreeNode(10);
+    root->left = new TreeNode(5);
+    root->right = new TreeNode(15);
+    root->left->left = new TreeNode(1);
+    root->left->right = new TreeNode(9);
+    root->right->left = new TreeNode(8);
+    root->right->right = new TreeNode(7);
+
+    vector<int> output = levelOrderTraversal(root);
+    for(auto it:output){
+        cout<<it<<" ";
+    }
     return 0;
 }

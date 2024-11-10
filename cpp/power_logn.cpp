@@ -32,8 +32,8 @@ double power_recursion(double x, int n){
 
 int main(int argc, char const *argv[])
 {
-    double x = 3;
-    int n = 3;
+    double x = 2;
+    int n = 5;
     cout<<x<<" raised to "<<n<<" is :"<<power_recursion(x,n);
 }
 

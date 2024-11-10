@@ -50,10 +50,12 @@ void next_permutation_1(int *arr, int n){
 
 int main(int argc, char const *argv[])
 {
-    int arr[] = {2,1,5,4,3,0,0};
+    // int arr[] = {2,1,5,4,3,0,0};
+    int arr[] = {1,2,5,4,1};
     int n = sizeof(arr)/sizeof(arr[0]);
 
-    // next_permutation(arr,arr+5); //using in-built function of C++
+    cout<<"Actual: "<<next_permutation(arr,arr+n)<<endl;; //using in-built function of C++
+
     next_permutation_1(arr,n);
     
     for(int k:arr){
